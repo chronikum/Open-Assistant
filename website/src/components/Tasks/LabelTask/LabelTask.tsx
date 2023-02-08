@@ -47,6 +47,11 @@ export const LabelTask = ({
     );
   }, [task, values, onReplyChanged, userInputMade, onValidityChanged]);
 
+  // Only run on component mounting and setting spam to false as default.
+  useEffect(() => {
+    setValues(new Array(task.labels.length).fill(0));
+  }, []);
+
   const cardColor = useColorModeValue("gray.50", "gray.800");
   const isSpamTask = task.mode === "simple" && task.valid_labels.length === 1 && task.valid_labels[0] === "spam";
 
